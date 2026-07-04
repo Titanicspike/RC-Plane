@@ -18,22 +18,47 @@
             }
         },
         {
-            "label": "Run Project",
+            "label": "Run Transmitter",
             "type": "process",
-            "command": "${env:HOME}/.pico-sdk/picotool/2.3.0/picotool/picotool",
+            "command": "${env:USERPROFILE}/.pico-sdk/picotool/2.3.0/picotool/picotool.exe",
             "args": [
                 "load",
-                "${command:raspberry-pi-pico.launchTargetPath}",
-                "-fx"
+                "${workspaceFolder}/build/RC-Plane.elf",
+                "-fx",
+                "--ser",
+                "E6616407E36F392A"
             ],
             "presentation": {
                 "reveal": "always",
                 "panel": "dedicated"
             },
-            "problemMatcher": [],
-            "windows": {
-                "command": "${env:USERPROFILE}/.pico-sdk/picotool/2.3.0/picotool/picotool.exe"
-            }
+            "problemMatcher": []
+        },
+        {
+            "label": "Run Receiver",
+            "type": "process",
+            "command": "${env:USERPROFILE}/.pico-sdk/picotool/2.3.0/picotool/picotool.exe",
+            "args": [
+                "load",
+                "${workspaceFolder}/build/Receiver.elf",
+                "-fx",
+                "--ser",
+                "E6614864D39E5B34"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Run Project",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Compile Project",
+                "Run Transmitter",
+                "Run Receiver"
+            ]
         },
         {
             "label": "Flash",

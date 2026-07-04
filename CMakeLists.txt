@@ -37,32 +37,58 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(RC-Plane RC-Plane.cpp )
+add_executable(Transmitter Transmitter.cpp)
 
-pico_set_program_name(RC-Plane "RC-Plane")
-pico_set_program_version(RC-Plane "0.1")
+pico_set_program_name(Transmitter "Transmitter")
+pico_set_program_version(Transmitter "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(RC-Plane 0)
-pico_enable_stdio_usb(RC-Plane 1)
+pico_enable_stdio_uart(Transmitter 0)
+pico_enable_stdio_usb(Transmitter 1)
 
 include(lib/RF24/CMakeLists.txt)
 
 # Add the standard library to the build
-target_link_libraries(RC-Plane
+target_link_libraries(Transmitter
         pico_stdlib
         hardware_spi
         )
 
 # Add the standard include files to the build
-target_include_directories(RC-Plane PRIVATE
+target_include_directories(Transmitter PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
 )
 
 # Add any user requested libraries
-target_link_libraries(RC-Plane 
+target_link_libraries(Transmitter 
         RF24
         )
 
-pico_add_extra_outputs(RC-Plane)
+pico_add_extra_outputs(Transmitter)
 
+# Add another executable
+# ===========================
+add_executable(Receiver Receiver.cpp)
+
+pico_set_program_name(Receiver "Receiver")
+pico_set_program_version(Receiver "0.1")
+
+# Modify the below lines to enable/disable output over UART/USB
+pico_enable_stdio_uart(Receiver 1)
+pico_enable_stdio_usb(Receiver 0)
+
+# Add the standard library to the build
+target_link_libraries(Receiver
+        pico_stdlib
+        hardware_spi
+        )
+
+# Add the standard include files to the build
+target_include_directories(Receiver PRIVATE
+  ${CMAKE_CURRENT_LIST_DIR}
+)
+target_link_libraries(Receiver 
+        RF24
+        )
+
+pico_add_extra_outputs(Receiver)
