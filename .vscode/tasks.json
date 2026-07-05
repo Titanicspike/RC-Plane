@@ -6,7 +6,10 @@
             "type": "process",
             "isBuildCommand": true,
             "command": "${userHome}/.pico-sdk/ninja/v1.13.2/ninja",
-            "args": ["-C", "${workspaceFolder}/build"],
+            "args": [
+                "-C",
+                "${workspaceFolder}/build"
+            ],
             "group": "build",
             "presentation": {
                 "reveal": "always",
@@ -23,10 +26,10 @@
             "command": "${env:USERPROFILE}/.pico-sdk/picotool/2.3.0/picotool/picotool.exe",
             "args": [
                 "load",
-                "${workspaceFolder}/build/RC-Plane.elf",
-                "-fx",
+                "${workspaceFolder}/build/Transmitter.elf",
                 "--ser",
-                "E6616407E36F392A"
+                "E6616407E36F392A",
+                "-fx"
             ],
             "presentation": {
                 "reveal": "always",
@@ -41,9 +44,9 @@
             "args": [
                 "load",
                 "${workspaceFolder}/build/Receiver.elf",
-                "-fx",
                 "--ser",
-                "E6614864D39E5B34"
+                "E6614864D39E5B34",
+                "-fx"
             ],
             "presentation": {
                 "reveal": "always",
@@ -57,6 +60,22 @@
             "dependsOn": [
                 "Compile Project",
                 "Run Transmitter",
+                "Run Receiver"
+            ]
+        },
+        {
+            "label": "Build and Run Transmitter",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Compile Project",
+                "Run Transmitter"
+            ]
+        },
+        {
+            "label": "Build and Run Receiver",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Compile Project",
                 "Run Receiver"
             ]
         },
@@ -76,7 +95,7 @@
             ],
             "problemMatcher": [],
             "windows": {
-                "command": "${env:USERPROFILE}/.pico-sdk/openocd/0.12.0+dev/openocd.exe",
+                "command": "${env:USERPROFILE}/.pico-sdk/openocd/0.12.0+dev/openocd.exe"
             }
         },
         {
@@ -95,7 +114,7 @@
             ],
             "problemMatcher": [],
             "windows": {
-                "command": "${env:USERPROFILE}/.pico-sdk/openocd/0.12.0+dev/openocd.exe",
+                "command": "${env:USERPROFILE}/.pico-sdk/openocd/0.12.0+dev/openocd.exe"
             }
         },
         {
@@ -120,7 +139,7 @@
             ],
             "problemMatcher": [],
             "windows": {
-                "command": "${env:USERPROFILE}/.pico-sdk/openocd/0.12.0+dev/openocd.exe",
+                "command": "${env:USERPROFILE}/.pico-sdk/openocd/0.12.0+dev/openocd.exe"
             }
         }
     ]

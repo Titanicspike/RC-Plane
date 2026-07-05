@@ -73,9 +73,8 @@ add_executable(Receiver Receiver.cpp)
 pico_set_program_name(Receiver "Receiver")
 pico_set_program_version(Receiver "0.1")
 
-# Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(Receiver 1)
-pico_enable_stdio_usb(Receiver 0)
+pico_enable_stdio_uart(Receiver 0)
+pico_enable_stdio_usb(Receiver 1)
 
 # Add the standard library to the build
 target_link_libraries(Receiver
