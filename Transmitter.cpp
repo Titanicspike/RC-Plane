@@ -26,7 +26,7 @@ int main() {
     }  
 
 
-    radio.setPALevel(RF24_PA_HIGH);      // Use LOW for testing
+    radio.setPALevel(RF24_PA_LOW);      // Use LOW for testing
     radio.setDataRate(RF24_250KBPS);    // Most reliable
     radio.setAutoAck(false);
     radio.setPayloadSize(sizeof(int));

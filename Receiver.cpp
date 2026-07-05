@@ -25,7 +25,7 @@ int main() {
     }  
 
 
-    radio.setPALevel(RF24_PA_HIGH);
+    radio.setPALevel(RF24_PA_LOW);
     radio.setDataRate(RF24_250KBPS);
     radio.setAutoAck(false);
     radio.setPayloadSize(sizeof(int));
